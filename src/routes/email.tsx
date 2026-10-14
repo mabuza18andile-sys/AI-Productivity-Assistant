@@ -29,8 +29,8 @@ function EmailPage() {
 
   async function generate() {
     const e: Record<string, string> = {};
-    if (!f.recipient.trim()) e.recipient = "Please enter a recipient or audience.";
-    if (f.purpose.trim().length < 10) e.purpose = "Describe the purpose in at least 10 characters.";
+    if (!f.recipient.trim()) e["recipient"] = "Please enter a recipient or audience.";
+    if (f.purpose.trim().length < 10) e["purpose"] = "Describe the purpose in at least 10 characters.";
     setErrors(e);
     if (Object.keys(e).length) return;
     const text = await ai.run(
@@ -51,7 +51,7 @@ function EmailPage() {
             <div>
               <Label htmlFor="rec">Recipient or audience *</Label>
               <Input id="rec" className="mt-1.5" placeholder="e.g. Procurement team at Acme Ltd" value={f.recipient} onChange={(e) => set("recipient")(e.target.value)} />
-              <FieldError msg={errors.recipient} />
+              <FieldError msg={errors["recipient"]} />
             </div>
             <div>
               <Label htmlFor="sub">Email subject</Label>
@@ -60,7 +60,7 @@ function EmailPage() {
             <div>
               <Label htmlFor="pur">Purpose of the email *</Label>
               <Textarea id="pur" className="mt-1.5" rows={3} placeholder="e.g. Request a quote for 50 office chairs delivered by month end" value={f.purpose} onChange={(e) => set("purpose")(e.target.value)} />
-              <FieldError msg={errors.purpose} />
+              <FieldError msg={errors["purpose"]} />
             </div>
             <div>
               <Label htmlFor="ctx">Additional context</Label>

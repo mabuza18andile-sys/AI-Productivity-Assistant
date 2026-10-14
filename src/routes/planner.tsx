@@ -54,8 +54,8 @@ function PlannerPage() {
   const open = tasks.filter((t) => !t.done);
 
   async function generate() {
-    if (!open.length) return toast.error("Add at least one open task first.");
-    if (start >= end) return toast.error("Working hours end must be after start.");
+    if (!open.length) { toast.error("Add at least one open task first."); return; }
+    if (start >= end) { toast.error("Working hours end must be after start."); return; }
     const list = open.map((t, i) =>
       `${i + 1}. ${t.name} | description: ${t.description || "none"} | deadline: ${t.deadline || "Not specified"} | duration: ${t.duration} min | priority: ${t.priority} | important: ${t.important ? "yes" : "no"} | urgent: ${t.urgent ? "yes" : "no"}`).join("\n");
     const text = await ai.run(`Today's date: ${today}\nPlanning mode: ${mode}\nAvailable working hours: ${start}–${end}${mode === "Weekly" ? " (Monday–Friday)" : ""}\n\nTasks:\n${list}`);
