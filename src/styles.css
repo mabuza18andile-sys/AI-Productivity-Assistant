@@ -46,7 +46,7 @@
   --color-warning: var(--warning);
   --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --shadow-card: var(--shadow-card);
+  --shadow-card: var(--card-shadow);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -104,7 +104,7 @@
   --sidebar-ring: oklch(0.7 0.11 192);
   --gradient-brand: linear-gradient(135deg, oklch(0.4 0.13 268), oklch(0.62 0.11 192));
   --gradient-hero: linear-gradient(120deg, oklch(0.26 0.09 268) 0%, oklch(0.34 0.11 262) 55%, oklch(0.5 0.1 205) 100%);
-  --shadow-card: 0 1px 2px oklch(0.22 0.05 265 / 5%), 0 6px 20px -12px oklch(0.22 0.05 265 / 18%);
+  --card-shadow: 0 1px 2px oklch(0.22 0.05 265 / 5%), 0 6px 20px -12px oklch(0.22 0.05 265 / 18%);
 }
 
 @layer base {
