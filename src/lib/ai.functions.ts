@@ -76,14 +76,14 @@ function friendlyError(status: number) {
 }
 
 export const runAi = createServerFn({ method: "POST" })
-  .inputValidator((d: { tool: AiTool; input: string; history?: ChatTurn[] }) => {
+  .inputValidator((d: { tool: AiTool; input: string; history?: ChatTurn[] | undefined }) => {
     if (!d || !(d.tool in PROMPTS)) throw new Error("Invalid tool");
     if (typeof d.input !== "string" || !d.input.trim()) throw new Error("Input is required");
     if (d.input.length > 40000) throw new Error("Input is too long");
     return { tool: d.tool, input: d.input, history: (d.history ?? []).slice(-20) };
   })
   .handler(async ({ data }): Promise<{ text: string } | { error: string }> => {
-    const apiKey = process.env.LOVABLE_API_KEY;
+    const apiKey = process.env["LOVABLE_API_KEY"];
     if (!apiKey) return { error: "The AI service is not configured yet. Ask an administrator to enable Lovable AI." };
 
     const input = [
